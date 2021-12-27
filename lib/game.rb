@@ -24,7 +24,7 @@ class Game
     loop do
       puts "#{@current_player_id.even? ? 'Player 1'.blue : 'Player 2'.red}'s turn, please enter the number of columns you want to drop"
       input = verify_input(player_input)
-      system "clear"
+      system 'clear'
       board.update_board(input, current_player_id) unless input.nil?
       board.display_board
       break if input
@@ -50,7 +50,14 @@ class Game
     elsif state == '1'
       puts 'Player 2 won!'.red.blink
       @win = true
+    elsif board_full?
+      puts "It's a draw!".green.blink
+      @win = true
     end
+  end
+
+  def board_full?
+    board.board.flatten.none?(&:nil?)
   end
 
   def four_in_a_row_by_row(arr)
@@ -70,7 +77,7 @@ class Game
   end
 
   def rotate90(grid)
-    ncols = grid.first.size 
+    ncols = grid.first.size
     grid.first.each_index.with_object([]) do |i, a|
       a << 6.times.map { |j| grid[j][ncols - 1 - i] }
     end
