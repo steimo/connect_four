@@ -18,7 +18,7 @@ cd connect_four
 ruby lib/game.rb
 ```
 ## Demo
-![Example]()
+![Example](https://github.com/steimz/connect_four/blob/main/demo.gif)
 </br>
 
 ## Flowchart
